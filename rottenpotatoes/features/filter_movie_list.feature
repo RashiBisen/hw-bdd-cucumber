@@ -29,7 +29,8 @@ Scenario: restrict to movies with 'PG' or 'R' ratings
   # enter step(s) to ensure that PG and R movies are visible
   # enter step(s) to ensure that other movies are not visible
   Given I am on the home page
-  When I check the following ratings: PG, R
+  # When I check the following ratings: PG, R
+  When I uncheck the following ratings: G, NC-17, PG-13
   And I press "Refresh" button
   Then I should see the following movies: The Terminator, The Incredibles
   And I should not see the following movies: Chicken Run, The Help

@@ -20,7 +20,8 @@ end
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   #  ensure that that e1 occurs before e2.
   #  page.body is the entire content of the page as a string.
-  fail "Unimplemented"
+  expect(/[\s\S]*#{e1}[\s\S]*#{e2}/).to match(page.body)
+  #fail "Unimplemented"
 end
 
 When /^I press "(.*)" button/ do |button|
@@ -30,10 +31,10 @@ end
 Then /I should (not )?see the following movies: (.*)$/ do |present, movies_list|
   movies = movies_list.split(', ')
   movies.each do |movie|
-    if present?
+    if present.nil?
       expect(page).to have_content(movie)
     else
-      expect(page).to have_content(movie)
+      expect(page).not_to have_content(movie)
     end
   end
 end
